@@ -338,8 +338,3 @@ body.dark-mode #addTaskButton:hover{
 body.dark-mode #newTask{
     background-color:#d8d8d8;
 }
-
-.delete-product {
-  border: none;
-  color: red;
-}
