@@ -9,6 +9,8 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/cart.css">
+  <link rel="shortcut icon" href="img/favicon.png">
 </head>
 
 <body>
@@ -47,7 +49,12 @@
     </div>
   </nav>
   <main>
-
+    <div class="overlay" id="overlay">
+      <div class="overlay-content">
+          <h2>COMPRA EXITOSA!</h2>
+          <p>Tu compra se ha realizado con éxito.</p>   
+      </div>
+  </div>
 
     <div class="container mt-5">
       <h2 class="display-5 text-center mb-4">Carrito de Compras</h2>
@@ -113,8 +120,8 @@
               <label for="comments" class="form-label pe-2 align-self-center">Comentarios</label>
               <input type="text" class="form-control col-12" id="comments" name="comments" placeholder="'Puerta marrón', 'bloque N°5'">
             </div>
-          </div>
-          <input class="btn btn-primary d-block" type="button" name="send" value="Comprar"> <!-- Botón que envía el form -->
+          </div><br>
+          <input class="btn btn-primary d-block" type="button" name="send" value="Comprar" id="mostrarOverlay"> <!-- Botón que envía el form -->
 
         </form>
       </div>
