@@ -10,32 +10,30 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <link rel="stylesheet" href="css/login.css">
+  <link rel="shortcut icon" href="img/favicon.png">
 
 
 </head>
-
-<body>
-  <div class="container text-center  w-25 newClass">
-    <div class="mx-auto  h-25">
-        <form id="formulario" class="login-form">
-          <img id='imagenLogin' src="https://i.ibb.co/Y8mf8NN/imagen-Login-JAP.png" alt="imagenDeLogin" width="220"
-            height="80">
-
-          <label for="username"></label>
-          <h6 class="text-dark">Iniciar sesión</h6>
-          <input type="text" id="username" name="username" class="input-field" required placeholder="Usuario">
-
-          <label for="password"></label>
-          <input type="password" id="password" name="password" class="input-field " required placeholder="Contraseña">
-
-          <div><button type="button" class="remember-button text-light"><input type="checkbox" value="remember-me">
-              Recordar usuario
-            </button>
+<body class="bg-light">
+  <div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="row w-100">
+      <div class="col-12 col-md-6 col-lg-4 mx-auto">
+        <form id="formulario" class="login-form p-4 text-center">
+          <img id='imagenLogin' src="https://i.ibb.co/Y8mf8NN/imagen-Login-JAP.png" alt="imagenDeLogin" width="220" height="80">
+          <h6 class="text-dark mb-3 text-center">Iniciar sesión</h6>
+          <input type="text" id="username" name="username" class="form-control mb-2 input-field" required placeholder="Usuario">
+          <input type="password" id="password" name="password" class="form-control mb-2 input-field" required placeholder="Contraseña">
+          <div class="form-check d-flex justify-content-center mb-3">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label text-decoration-underline" for="flexCheckDefault">Recordar usuario</label>
           </div>
-          <button id='botton' type="button" class="submit-button text-light" onclick="login()">Ingresar</button>
+          <button id='botton' type="button" class="btn btn-primary w-75 fw-bold submit-button" onclick="login()">Ingresar</button>
         </form>
       </div>
+    </div>
   </div>
+
+
 
   <footer class="text-muted newClass">
     <div class="containwer fixed-bottom">
