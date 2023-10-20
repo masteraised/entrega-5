@@ -1,5 +1,3 @@
-
-
 (function () {
     'use strict'
 
@@ -8,6 +6,11 @@
 
     const pass2 = document.getElementById('password2')
     const pass1 = document.getElementById('password1')
+  
+    const alertDanger = document.getElementById('alert-danger')
+    const regBtn = document.getElementById('regBtn')
+
+    var form = document.getElementById("registroForm");
 
 
     // Bucle sobre ellos y evitar el envío
@@ -19,17 +22,29 @@
                     event.stopPropagation()
                 }
 
-                pass2.addEventListener("input", (event) =>
-                { if ((pass2.value != pass1.value) || (!pass1.checkValidity()))
-                    { pass2.setCustomValidity(' Las contraseñas deben de ser iguales'); } 
-                    else
-                     { // input is fine -- reset the error message
-                       pass2.setCustomValidity(''); } })
+                pass2.addEventListener("input", (event) => {
+                    if ((pass2.value != pass1.value) || (!pass1.checkValidity())) {
+                        pass2.setCustomValidity(' Las contraseñas deben ser iguales');
+                    } else {
+                        // input is fine -- reset the error message
+                        pass2.setCustomValidity('');
+                    }
+                })
+
+                // Check the terms checkbox before submitting
+                if (!modalCheckbox.checked) {
+                    modalCheckbox.classList.add('is-invalid');
+                    alertDanger.classList.add('show');
+                    regBtn.classList.add('btn-danger');
+                } else {
+                    modalCheckbox.classList.remove('is-invalid');
+                    alertDanger.classList.remove('show');
+                    regBtn.classList.remove('btn-danger');
+                }
 
                 form.classList.add('was-validated')
             }, false)
         })
-})()
 
 
 
@@ -37,4 +52,39 @@
 
 
 
+})();
 
+const terminosDiv = document.getElementById('terminosDiv')
+
+  // Ocultar el mensaje de error inicialmente
+terminosDiv.style.display = "none";
+
+
+
+const modalCheckbox = document.getElementById('invalidCheck')
+
+regBtn.addEventListener("click", function() {
+    console.log('hola mundo');
+   
+   if(!modalCheckbox.checked) 
+   {terminosDiv.style.display = "block";}
+   else{
+    terminosDiv.style.display = 'none'
+   }
+
+});
+
+var button = document.querySelector('[data-bs-target="#modalTerminos"]');
+
+modalCheckbox.addEventListener("click", function() {
+    console.log('hola modald');
+    console.log(modalCheckbox.checked);
+   
+   
+    if(!modalCheckbox.checked) 
+    {terminosDiv.style.display = "block";
+    button.style.color = 'red';}
+    else{
+        terminosDiv.style.display = 'none'
+       }
+});
