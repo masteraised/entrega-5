@@ -55,10 +55,11 @@ const modalCheckbox = document.getElementById('invalidCheck')
 
 regBtn.addEventListener("click", function () {
     console.log('hola mundo');
-
+console.log(modalCheckbox);
     if (!modalCheckbox.checked) {
         terminosDiv.style.display = "block";
         button.style.color = 'red';
+        divCondiciones.style.color = 'red';
     }
     else {
         terminosDiv.style.display = 'none'
@@ -83,7 +84,27 @@ modalCheckbox.addEventListener("click", function () {
     else {
         terminosDiv.style.display = 'block'
         button.style.color = 'red';
+        
     }
 });
 
 
+const divCondiciones = document.getElementById('divCondiciones');
+
+modalCheckbox.addEventListener("click", function () {
+
+    console.log('hola divCondiciones');
+    console.log(modalCheckbox.checked);
+
+    if (modalCheckbox.checked) {
+        
+        divCondiciones.style.color = 'green';
+   
+    }
+    else {
+        divCondiciones.style.color = 'red';
+        
+    }
+
+
+});
