@@ -77,6 +77,7 @@ modalCheckbox.addEventListener("click", function () {
     if (modalCheckbox.checked) {
         terminosDiv.style.display = "none";
         button.style.color = 'blue';
+   
     }
 
     else {
