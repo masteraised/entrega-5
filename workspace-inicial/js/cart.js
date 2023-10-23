@@ -158,32 +158,51 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     
 
-    /*  SE PUEDE BORRAR (es un intento de la pauta 1)
-    const subTotal = document.getElementsByClassName("subtotal-cell").value;
-
-    subTotalytys = [];
-    array.forEach(element => {
-     
-    }); */
 
 });
 
 
 
-/* 
-Agrega un espacio donde se visualicen:
+/*Script para manejar medios de pago Entrega6*/
 
-El subtotal general: la suma de los subtotales (costo por cantidad) de todos los artículos
-El costo de envío: calculado a partir del envío seleccionado por el usuario (5%, 7% o 15%) y siendo un porcentaje del valor anterior (el subtotal).
-
-El total a pagar: la suma de los dos valores anteriores.
-Los 3 valores deberán actualizarse en tiempo real cuando se modifique el tipo de envío o los artículos en el carrito.
-
-Todos los valores deberán ser mostrados en dólares.
+const ccTransfer = document.getElementById("flexRadioDefault1");
+const bankTransfer = document.getElementById("flexRadioDefault2");
+const CC = document.getElementById ("creditCard");
+const CVV = document.getElementById ("creditCardCVV"); 
+const dateCC = document.getElementById ("creditCardDate"); 
+const bankAccount = document.getElementById ("cuentaBancaria"); 
 
 
-if (currency == "UYU") {
+ccTransfer.addEventListener("click", (event) => {
   
-} else {
-  
-}  */
+  bankAccount.setAttribute("disabled", "");
+  CC.removeAttribute("disabled");
+  CVV.removeAttribute("disabled");
+  dateCC.removeAttribute("disabled");
+ bankAccount.value = ''
+});
+
+
+  bankTransfer.addEventListener("click", (event) => {
+    CC.setAttribute("disabled", "");
+    CVV.setAttribute("disabled", "");
+    dateCC.setAttribute("disabled", "");
+    bankAccount.removeAttribute('disabled');
+    CC.value =''
+    CVV.value =''
+    dateCC.value =''
+
+  });
+
+
+/*Script para manejar medios de pago Entrega6*/
+
+
+
+
+
+
+
+
+
+
