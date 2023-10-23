@@ -30,6 +30,61 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const subtotal = cantidad * costoUnitario;
     subtotalCell.textContent = subtotal.toFixed(0) + " USD";
+
+    actualizarTotales();
+  }
+
+  // Agrega un evento "input" al formulario para escuchar cambios en las cantidades y la selección del tipo de envío.
+  // Llama a la función calcularSubtotalPorFila y actualizarTotales en respuesta a estos cambios.
+  const form = document.querySelector("form");
+  form.addEventListener("input", (event) => {
+    if (event.target.classList.contains("cantidad-input")) {
+      // Solo calcular el subtotal si el evento proviene de un campo de cantidad
+      calcularSubtotal(event.target.closest("tr"));
+    }
+    actualizarTotales();
+  });
+
+  function actualizarTotales() {
+    // Calculamos el subtotal general sumando los subtotales de todas las filas
+    let subtotalGeneral = 0;
+    const filas = document.querySelectorAll("tbody tr");
+    filas.forEach((fila) => {
+      // Obtenemos la celda que contiene el subtotal de una fila
+      const subtotalCell = fila.querySelector(".subtotal-cell");
+      // Sumamos el valor del subtotal de esta fila al subtotal general
+      subtotalGeneral += parseFloat(subtotalCell.textContent);
+    });
+
+    // Obtenemos el valor del tipo de envío seleccionado
+    const selectedShippingOption = document.querySelector(
+      "input[name='shippingType']:checked"
+    );
+    let costoEnvio = 0;
+
+    if (selectedShippingOption) {
+      // Obtenemos el valor del tipo de envío seleccionado (premium, express, o standard)
+      const shippingType = selectedShippingOption.value;
+      // Calculamos el costo de envío en función del tipo de envío seleccionado
+      if (shippingType === "premium") {
+        costoEnvio = subtotalGeneral * 0.15; // 15% del subtotal
+      } else if (shippingType === "express") {
+        costoEnvio = subtotalGeneral * 0.07; // 7% del subtotal
+      } else {
+        costoEnvio = subtotalGeneral * 0.05; // 5% del subtotal (por defecto)
+      }
+    }
+
+    // Calculamos el total a pagar sumando el subtotal general y el costo de envío
+    const totalPagar = subtotalGeneral + costoEnvio;
+
+    // Actualizamos los valores en el HTML para mostrarlos al usuario
+    document.getElementById("subtotal").textContent =
+      subtotalGeneral.toFixed(0) + " USD";
+    document.getElementById("costo-envio").textContent =
+      costoEnvio.toFixed(0) + " USD";
+    document.getElementById("total-pagar").textContent =
+      totalPagar.toFixed(0) + " USD";
   }
 
   displayCartItems();
@@ -63,7 +118,9 @@ document.addEventListener("DOMContentLoaded", () => {
           cantidadInput.value = cantidad; // Actualiza el valor en el input
         }
 
+        
         calcularSubtotal(queue);
+        actualizarTotales();
       });
 
       // Agregamos un evento de clic al icono de eliminación (X) en la imagen del producto
@@ -77,8 +134,11 @@ document.addEventListener("DOMContentLoaded", () => {
         // Eliminar el producto del localStorage
         const updatedCart = cartItems.filter((item) => item.id !== productId);
         localStorage.setItem("cart", JSON.stringify(updatedCart));
+        actualizarTotales(); // Calcula los totales después de eliminar un producto
       });
     });
+     // Calcula los totales cuando se muestran los productos
+     actualizarTotales();
   }
 
     const overlay = document.getElementById("overlay");
